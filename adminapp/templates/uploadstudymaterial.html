@@ -1,0 +1,28 @@
+{% extends 'adminparent.html'%}
+{%block main%}
+<h1 style="text-align: center;">Uploaded Study Materials</h1>
+<table class="table table-border text-light">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Program</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">branch</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">year</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">subject</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">filename</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Download</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Download</th>
+    </tr>
+    {%for m in mat%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{m.program}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{m.branch}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{m.year}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{m.subject}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{m.filename}}</td>
+        <td class="align-middle text-center text-sm text-dark"><a href="{{m.myfile.url}}" target="_blank">{{m.filename}}</a></td>
+        <td><a style="color: red;" download="" href="{{m.myfile.url}}">{{m.filename}}</a></td>
+        {%endfor%}
+    </tr>
+</table>
+{%endblock main%}

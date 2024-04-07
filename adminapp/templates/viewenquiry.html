@@ -1,0 +1,26 @@
+{%extends 'adminparent.html'%}
+{%block main%}
+    <h1 style="text-align: center;">Enquiries</h1>
+    <table  class="table table-border text-light">
+        <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gender</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emali</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enquiry text</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Enquiry Date</th>
+        </tr>
+        {% for e in enq%}
+        <tr>
+            <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.name}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.gender}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.address}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.email}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.enquirytext}}</td>
+            <td class="align-middle text-center text-sm text-dark">{{e.enquirydate}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+{%endblock%}

@@ -1,0 +1,57 @@
+{%extends 'father.html'%}
+{%block body%}
+<script>
+    function validate(){
+        responcetype=document.getElementById('responcetype');
+        subject=document.getElementById('subject');
+        responcetext=document.getElementById('responcetext');
+        if(responcetype.value=='' || responcetype.value==null)
+        {
+            alert("Plese select responcetype");
+            responcetype.focus();
+        }
+        else if(subject.value=='' || subject.value==null)
+        {
+            alert('enter subject');
+            subject.focus();
+        }
+        else if(responcetext.value=="" || responcetext.value==null)
+        {
+            alert("enter your responcetext");
+            responcetext.focus();
+        }
+        else{
+            document.getElementById("resfrm").submit();
+        }
+    }
+</script>
+<h1 style="text-align: center;">You can Register your Complain/Feeback here!</h1>
+
+
+<form action="{%url 'feedback'%}" class="form-control" method="post" id="resfrm" onsubmit="event.preventDefault(); validate();">
+    {%csrf_token%}
+    <table style="width: 70%; margin: auto;">
+        <tr>
+            <td class="align-middle text-center text-sm">Select responce type</td>
+            <td class="align-middle text-center text-sm"><select class="form-control" name="responcetype" id="responcetype">
+                <option selected value="">--select--</option>
+                <option value="complain">complain</option>
+                <option value="feedback">Feedback</option>
+            </select></td>
+            
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Enter subject</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="text" name="subject" id="subject"></td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Enter Responce Text</td>
+            <td class="align-middle text-center text-sm"><textarea class="form-control" name="responcetext" id="responcetext" cols="30" rows="3"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="align-middle text-center text-sm"><button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">Register</button></td>
+        </tr>
+    </table>
+</form>
+{%endblock%}

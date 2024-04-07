@@ -1,0 +1,57 @@
+{%extends 'father.html'%}
+
+
+{%block body%}
+
+
+
+    <h1 style="text-align: center;"> {{stu.name}}'s Profile</h1>
+<table class="table align-items-center mb-0" >
+        <tr>
+            <td class="align-middle text-center text-sm">username :</td>
+            <td class="align-middle text-center text-sm">{{stu.username}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Father Name</td>
+            <td class="align-middle text-center text-sm">{{stu.fname}}</td>
+
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Dob</td>
+            <td class="align-middle text-center text-sm">{{stu.dob}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Gender</td>
+            <td class="align-middle text-center text-sm">{{stu.gender}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Branch</td>
+            <td class="align-middle text-center text-sm">{{stu.branch}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Year</td>
+            <td class="align-middle text-center text-sm">{{stu.year}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Address</td>
+            <td class="align-middle text-center text-sm">{{stu.address}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Aadhar</td>
+            <td class="align-middle text-center text-sm">{{stu.aadhar}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Email</td>
+            <td class="align-middle text-center text-sm">{{stu.email}}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Registration Date</td>
+            <td class="align-middle text-center text-sm">{{stu.regdate}}</td>
+
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">password</td>
+            <td class="align-middle text-center text-sm">{{log.password}}</td>
+        </tr>
+    </table>
+    {%endblock%}

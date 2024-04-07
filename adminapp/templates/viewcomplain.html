@@ -1,0 +1,32 @@
+{%extends 'adminparent.html'%}
+{%block main%}
+<h1 style="text-align: center;">Student Complain's</h1>
+<table class="table table-border text-dark">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Year</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Complain</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted Date</th>
+
+    </tr>
+    {%for c in comp%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.username}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.name}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.branch}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.year}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.email}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.subject}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.responcetext}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{c.responcedate}}</td>
+        {%endfor%}
+    </tr>
+</table>
+
+{%endblock%}

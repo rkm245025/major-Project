@@ -1,0 +1,25 @@
+{% extends "father.html" %}
+{% block body %}
+    
+        
+            <h1>View Answer</h1>
+            <table class="table align-items-center mb-0">
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">A#</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Answer</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Answered By</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted date</th>
+
+                </tr>
+                {% for a in ans%}
+                <tr>
+                <td class="align-middle text-center text-sm">{{a.aid}}</td>
+                <td class="align-middle text-center text-sm">{{a.answer}}</td>
+                <td class="align-middle text-center text-sm">{{a.answerby}}</td>
+                <td class="align-middle text-center text-sm">{{a.postedate}}</td>
+                
+                {% endfor %}</tr>
+            </table>        
+        
+    
+{% endblock body %}

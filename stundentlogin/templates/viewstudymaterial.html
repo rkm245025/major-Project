@@ -1,0 +1,22 @@
+{%extends 'father.html'%}
+{%block body%}
+<h1 style="text-align: center; color: goldenrod;">Your Learning Material</h1>
+<table class="table align-items-center mb-0">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
+
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">File Name</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dowmload</th>
+
+    </tr>
+    {%for s in study%}
+    <tr>
+        <td class="align-middle text-center text-sm">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm">{{s.subject}}</td>
+        <td class="align-middle text-center text-sm">{{s.filename}}</td>
+        <td class="align-middle text-center text-sm"><a href="{{s.myfile.url}}" download >{{s.myfile}}</a></td>
+        {%endfor%}
+    </tr>
+</table>
+{%endblock%}

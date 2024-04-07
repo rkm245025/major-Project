@@ -1,0 +1,212 @@
+{%extends 'student/layout.html'%}
+{%block body%}
+<script>
+    function validate(){
+        var username=document.getElementById('username');
+        var name=document.getElementById('name');
+        var dob=document.getElementById('dob');
+        var gender=document.getElementById('gender');
+        var fname=document.getElementById('fname');
+        var branch=document.getElementById('branch');
+        var year=document.getElementById('year');
+        var address=document.getElementById('address');
+        var email=document.getElementById('email');
+        var aadhar=document.getElementById('aadhar');
+        var password=document.getElementById('password');
+        var cpassword=document.getElementById('cpassword');
+        var emailexp=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+        var frmreg=document.getElementById('frmreg');
+        /*alert(username);
+        alert(name);
+        alert(dob);
+        alert(gender);
+        alert(fname);
+        alert(branch);
+        alert(year);
+        alert(address);
+        alert(email);
+        alert(aadhar);
+        alert(password);
+        alert(cpassword);*/
+        if(username.value==''|| username.value==null)
+        {
+            alert("you need to enter username, ok");
+            username.focus();
+        }
+        else if(isNaN(username.value))
+        {
+            alert('Enter number only');
+            username.focus();
+        }
+        else if(name.value==''|| name.value==null)
+        {
+            alert('Enter your Name plese');
+            name.focus();
+
+        }
+        else if(dob.value==''|| dob.value==null)
+        {
+            alert("enter dateof birth plese");
+            dob.focus();
+        }
+        else if(gender.value=='--Select--'){
+            alert("Select gender plese");
+            gender.focus();
+        }
+
+        else if(fname.value==''||fname.value==null)
+        {
+            alert("enter your father name");
+            fname.focus();
+        }
+        else if(branch.value=="--select--")
+        {
+            alert("Select branch plese");
+            branch.focus();
+        }
+        else if(year.value=='--select--')
+        {
+            alert("select year plese");
+            year.focus();
+
+        }
+        else if(address.value==''|| address.value==null)
+        {
+            alert("Enter your address plese");
+            year.focus();
+        }
+        else if(email.value==''|| email.value==null)
+        {
+            alert("Enter Email plese");
+            email.focus();
+
+        }
+        else if(!emailexp.test(email.value)){
+            alert("plese enter a valid email");
+            email.focus();
+        }
+        else if(aadhar.value=="" ||aadhar.value==null)
+        {
+            alert('Enter Aadhar number Plese !');
+            aadhar.focus();
+        }
+        else if(isNaN(aadhar.value))
+        {
+            alert("Enter numbers only in Aadhar !");
+            aadhar.focus();
+        }
+        else if(aadhar.value.length!=12)
+        {
+            alert("Enter 12 Digit numbers in aadhar");
+            aadhar.focus();
+        }
+        else if(password.value==''||password.value==null)
+        {
+            alert("Plese enter your password");
+            password.focus();
+        }
+        else if (password.value.length<8)
+        {
+            alert("Password sholud be grater than 8 character !");
+            password.focus();
+        }
+        else if(cpassword.value!=password.value)
+        {
+            alert("confirm password not mathch");
+            cpassword.focus();
+        }
+        else{
+            alert("your form is about to submit")
+            frmreg.submit();
+        
+        }
+        
+
+    }
+</script>
+{% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+{% endif %}
+
+<h1 class="text-light" style="text-align: center;">Register Here</h1>
+<form class="form-group" method="post" id="frmreg" onsubmit="event.preventDefault(); validate();" action="{%url  'saveform'%}">
+    {%csrf_token%}
+    <table class="table" style="width: 60%; margin: auto;"><tr>
+        <td class='text-light'>User Name (use mobile number)</td>
+    <td><input class="form-control" type="text" name="username" id="username"></td>
+</tr>
+<tr>
+    <td class='text-light'>Name</td>
+    <td><input class="form-control" type="text" name="name" id="name"></td>
+</tr>
+<tr>
+    <td class='text-light'>Date of birth</td>
+    <td><input class="form-control" type="date" name="dob" id="dob"></td>
+</tr>
+<tr>
+    <td class='text-light'>Gender</td>
+    <td><select class="form-control" name="gender" id="gender">
+        <option value="--Select--">--Select--</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select></td>
+</tr>
+<tr>
+    <td class='text-light'>father name</td>
+    <td><input class="form-control" type="text" name="fname" id="fname"></td>
+</tr>
+<tr>
+    <td class='text-light'>select branch</td>
+    <td><select class="form-control" name="branch" id="branch">
+        <option  selected="--select--">--select--</option>
+        {%for b in branch%}
+        <option value="{{b.branch}}">{{b.branch}}</option>
+        {%endfor%}
+    </select></td>
+</tr>
+<tr>
+    <td class='text-light'>Year</td>
+    <td><select class="form-control" name="year" id="year">
+        <option selected value="--select--">--select--</option>
+        {% for y in year%}
+        <option value="{{y.year}}">{{y.year}}</option>
+        {%endfor%}
+    </select></td>
+
+</tr>
+<tr>
+    <td class='text-light'>address</td>
+    <td><textarea class="form-control" name="address" id="address" cols="20" rows="3"></textarea></td>
+</tr>
+<tr>
+    <td class='text-light'>Email</td>
+    <td><input class="form-control" type="email" name="email" id="email"></td>
+</tr>
+<tr>
+    <td class='text-light'>Aadhar Number</td>
+    <td><input class="form-control" type="number" name="aadhar" id="aadhar"></td>
+    
+</tr>
+<tr>
+    <td>create password</td>
+    <td><input class="form-control" type="password" name="password" id="password"></td>
+</tr>
+<tr>
+    <td>confirm password</td>
+    <td><input class="form-control" type="password" name="cpassword" id="cpassword"></td>
+</tr>
+<tr>
+    <td><input class="btn btn-danger" type="reset" name="" id="rest"></td>
+    <td><button class="btn btn-success" type="submit">Register</button></td>
+</tr>
+</table>
+</form>
+
+{%endblock%}

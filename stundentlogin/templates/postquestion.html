@@ -1,0 +1,56 @@
+{%extends 'father.html'%}
+{%block body%}
+<script>
+    function validate(){
+        question=document.getElementById("question");
+        if(question.value=="" || question.value==null)
+        {
+            alert("Enter Question first !");
+            question.focus();
+        }
+        else{
+            document.getElementById('qureg').submit();
+        }
+        
+    }
+</script>
+<h1 style="text-align: center; color: chocolate;">Post Your Questions Here</h1>
+<form action="{%url 'postquestion'%}" class="form-control" method="post" id="qureg">
+    {%csrf_token%}
+    <div class="table-responsive p-0">
+    <table class="table align-items-center mb-0">
+        <tr>
+            <td class="align-middle text-center text-sm">Enter Question</td>
+            <td><textarea class="form-control" name="question" id="question" cols="20" rows="3"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit" style="color: red;">POST</button></td>
+        </tr>
+    </table>
+</form>
+<br/><br/>
+
+<table class="table align-items-center mb-0">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted By</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted Date</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Post Answer</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">View Answer</th>
+    </tr>
+    {%for q in qn%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{q.qid}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{q.question}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{q.postedby}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{q.posteddate}}</td>
+        <td class="align-middle text-center text-sm text-dark"><a href="{%url 'postanswer' qid=q.qid%}">POst</a></td>
+        <td class="align-middle text-center text-sm text-dark"><a href="{%url 'viewanswer' qid=q.qid%}">View</a></td>
+        {%endfor%}
+        
+    </tr>
+</table>
+</div>
+{%endblock%}

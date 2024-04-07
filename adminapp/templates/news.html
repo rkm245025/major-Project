@@ -1,0 +1,55 @@
+{%extends 'adminparent.html'%}
+
+{%block main%}
+<script>
+    function ravi(){
+        var newstitle=document.getElementById("newstitle");
+        var newstext=document.getElementById('newstext');
+        var newsby=document.getElementById('newsby');
+        /*alert(newstitle);
+        alert(newsby);
+        alert(newstext);*/
+
+        if(newstitle.value=="" || newstitle.value==null)
+        {
+            alert("Enter title plese");
+            newstitle.focus();
+        }
+        else if(newstext.value=="" || newstext.value==null)
+        {   alert("Enter notice plese");
+            newstext.focus();
+        }
+        else if(newsby.value=="" || newsby.value==null)
+        {
+            alert("enter your name plese");
+            newsby.focus();
+        }
+        else{
+            document.getElementById("upns").submit();
+        }
+    }
+</script>
+<h1 style="text-align: center;">Upload Noties for Students</h1>
+<form action="{% url 'news'%}" class="form-control" method="post" id="upns" onsubmit="event.preventDefault(); ravi();">
+    {%csrf_token%}
+    <table  class="table align-items-center mb-0">
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Notice Titile</td>
+            <td class="align-middle text-center text-sm"><input   class="form-control" placeholder="titile" aria-label="title" type="text" name="newstitle" id="newstitle"></td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Notice</td>
+            <td class="align-middle text-center text-sm"><textarea class="form-control" placeholder="Notice" aria-label="notice" name="newstext" id="newstext" cols="20" rows="3"></textarea></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Uploaded By</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" placeholder="Uploaded by" aria-label="uploadby" type="text" name="newsby" id="newsby"></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm"></td>
+            <td class="align-middle text-center text-sm"><button    class="btn bg-gradient-dark w-100 my-4 mb-2" style="background-color: green;" type="submit">Upload</button></td>
+        </tr>
+    </table>
+
+</form>
+{%endblock%}

@@ -1,0 +1,56 @@
+{%extends 'student/layout.html'%}
+{%block body%}
+<script>
+  function validate(){
+
+username=document.getElementById('username');
+
+password=document.getElementById('password');
+usertype=document.getElementById('usertype');
+/*alert(username.value)
+alert(password.value)
+alert(usertype.value)*/
+if(username.value==''||username.value==null)
+  {
+    alert("Enter Username !");
+    username.focus();
+  }
+else if(password.value==""||password.value==null)
+{
+  alert("Plese Enter password");
+  document.getElementById('password').focus();
+}
+else{
+  document.getElementById('log').submit();
+}
+
+  }
+
+</script>
+{% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+{% endif %}
+
+
+<h1 style="text-align: center;color: whitesmoke;"><b>Login</b></h1>
+
+<form action="{%url 'loginin'%}" method="post" id="log" onsubmit="event.preventDefault(); validate();" class="form-group">
+    {%csrf_token%}
+    <table class="table" style="width: 50%;margin: auto;"><tr><td style="color:  whitesmoke;"><b>Username</b></td>
+    <td><input class="form-control" type="text" name="userid" id="username" placeholder="your username"></td></tr>
+
+<tr><td style="color: whitesmoke;"><b>Password</b></td>
+<td><input type="password" name="password" id="password" placeholder="your password" class="form-control"></td></tr>
+<tr><td style="color:  white"><b>Select User Type</b></td>
+<td><select class="form-control" name="usertype" id="usertype"><option value="student">stundent</option><option value="admin">admin</option></select></td></tr>
+
+<tr><td></td><td><button class="btn btn-success" type="submit">Login</button></td></tr></table>
+</form>
+{%endblock%}

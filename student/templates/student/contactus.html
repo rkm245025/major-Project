@@ -1,0 +1,120 @@
+{%extends 'student/layout.html'%}
+{%load static%}
+{%block body%}
+
+<script>
+  function validate(){
+  var name=document.getElementById('name');
+  var gender=document.getElementById('gender');
+  var address=document.getElementById('address');
+  var email=document.getElementById("email");
+  var enquiry=document.getElementById("enquiry");
+  if(name.value=="" || name.value==null)
+  {
+    alert("Enter name plese");
+    name.focus();
+  }
+  else if(gender.value=="" || gender.value==null)
+  {
+    alert("select gender plese");
+    gender.focus();
+  }
+  else if(address.value=="" || address.value==null)
+  {
+    alert("Enter address plese");
+    address.focus();
+  }
+  else if(email.value=="" || email.value==null)
+  {
+    alert("enter email plese");
+    email.focus();
+  }
+  else if(enquiry.value=="" || enquiry.value==null)
+  {
+
+    alert("enter your enquiry plese");
+    enquiry.focus();
+  }
+  else{
+    document.getElementById('cts').submit();
+  }
+  
+
+
+}
+</script>
+{% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+{% endif %}
+
+<section class="about_section layout_padding">
+    <div class="container  ">
+      <div class="heading_container heading_center">
+        <h2>
+          Contact- <span>Us</span>
+        </h2>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="{%static 'ravi/images/ravi4.png'%}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+                        
+            <form action="{%url 'contactus'%}" id="cts" method="post" class="form-group" onsubmit="event.preventDefault(); validate();">
+                {%csrf_token%}
+                <table class="table" style="width: 90%; margin: auto;">
+                    <tr>
+                        <td style="color: whitesmoke;">Name</td>
+                        <td><input type="text" name="name" id="name" class="form-control"></td>
+            
+                    </tr>
+                    <tr>
+                        <td style="color: whitesmoke;">gender</td>
+                        <td><select name="gender" id="gender" class="form-control">
+                          <option value="" selected>--select--</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td  style="color: whitesmoke;">Address</td>
+                        <td><textarea name="address" id="address" cols="12" rows="2" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td  style="color: whitesmoke;">Emali</td>
+                        <td><input type="email" name="email" id="email" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td  style="color: whitesmoke;">Enquriy</td>
+                        <td><textarea name="enquirytext" id="enquiry" cols="12" rows="2" class="form-control"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit" class="btn btn-danger">Submit</button></td>
+                    </tr>
+                    
+                </table>
+                
+            
+            
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<br>
+<br>
+{%endblock%}

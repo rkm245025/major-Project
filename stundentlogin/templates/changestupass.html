@@ -1,0 +1,64 @@
+{%extends 'father.html'%}
+{%block body%}
+<script>
+    function validate(){
+        oldpassword=document.getElementById('oldpassword');
+        newpassword=document.getElementById('newpassword');
+        confirmpassword=document.getElementById('confirmpassword');
+        if(oldpassword.value=="" || oldpassword.value==null)
+        {
+            alert("Enter your old password");
+            oldpassword.focus();
+
+        }
+        else if(newpassword.value=="" || newpassword.value==null)
+        {
+            alert("Plese Enter newpassword");
+            newpassword.focus();
+    
+
+        }
+        else if (newpassword.value==oldpassword.value)
+        {
+            alert("New password to same as oldpassword");
+            newpassword.focus();
+        }
+        else if(newpassword.value.length<8)
+        {
+            alert("newpasword sholud greater than 8 character");
+            newpassword.focus();
+        }
+        else if(confirmpassword.value!=newpassword.value)
+        {
+            alert("newpassowrd and confirm password sholud be same");
+            confirmpassword.focus();
+        }
+        else{
+            document.getElementById("cgps").submit();
+        }
+
+    }
+</script>
+<h1 style="text-align: center;">Change Your Password</h1>
+<form action="{% url 'changestupass'%}" method="post" id="cgps" onsubmit="event.preventDefault(); validate();">
+    {%csrf_token%}
+    <table  class="table align-items-center mb-0">
+        <tr>
+            <td class="align-middle text-center text-sm"> Oldpassword</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="text" name="oldpassword" id="oldpassword"></td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Newpassword</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="password" name="newpassword" id="newpassword"></td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center text-sm">Confirmpassword</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="password" name="confirmpassword" id="confirmpassword"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="align-middle text-center text-sm"><button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">Change</button></td>
+        </tr>
+    </table>
+</form>
+{%endblock%}

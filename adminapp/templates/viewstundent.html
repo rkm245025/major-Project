@@ -1,0 +1,37 @@
+{%extends 'adminparent.html'%}
+{%block main%}
+<h1 style="text-align: center;">All Registered Students</h1>
+<div class="col-sm-12" style="overflow-x:scroll">
+<table  class="table table-border text-light" style="width: 60; margin: auto;">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of Birth</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gender</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Father Name</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Year</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AAdhar Number</th>
+
+    </tr>
+    {%for s in stu%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.username}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.name}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.dob}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.gender}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.fname}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.branch}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.year}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.address}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.email}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{s.aadhar}}</td>
+        {%endfor%}
+    </tr>
+</table>
+</div>
+{%endblock%}

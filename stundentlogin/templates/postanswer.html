@@ -1,0 +1,30 @@
+{%extends 'father.html'%}
+{%block body%}
+<script>
+function validate(){
+    answer=document.getElementById('answer');
+    if(answer.value=='' || answer.value==null)
+    {
+        alert("Plese type your answer");
+        answer.focus();
+    }
+    else{
+        document.getElementById('subans').submit();
+    }
+}
+</script>
+<h1 style="text-align: center;">Post your Answer is here</h1>
+<form action="{%url 'postans'%}" method="post" id="subans" onsubmit="event.preventDefault(); validate();">
+    {%csrf_token%}
+    <table>
+        <tr>
+            <td class="align-middle text-center text-sm">Enter Answer</td>
+            <td class="align-middle text-center text-sm"><textarea name="answer" id="answer" cols="30" rows="3"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" name="qid" id="" value="{{qid}}"></td>
+            <td><button  class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">Post</button></td>
+        </tr>
+    </table>
+</form>
+{%endblock%}

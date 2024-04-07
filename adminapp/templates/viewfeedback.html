@@ -1,0 +1,31 @@
+{%extends 'adminparent.html'%}
+
+{%block main%}
+<h1 style="text-align: center;">View Stundent Feedback's</h1>
+<table class="table table-border text-light">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Branch</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Year</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">email</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feedback</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posted Date</th>
+    </tr>
+    {%for f in feed%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.username}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.name}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.branch}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.year}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.email}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.subject}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.responcetext}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{f.responcedate}}</td>
+        {%endfor%}
+    </tr>
+</table>
+{%endblock%}

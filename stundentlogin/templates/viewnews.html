@@ -1,0 +1,24 @@
+{%extends 'father.html'%}
+{%block body%}
+<h1 style="text-align: center;border: 2px;">Notice</h1>
+<table class="table align-items-center mb-0">
+    <tr>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Uploaded By</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">title</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Notice</th>
+        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+
+
+    </tr>
+    {%for n in note%}
+    <tr>
+        <td class="align-middle text-center text-sm text-dark">{{forloop.counter}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{n.newsby}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{n.newstitle}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{n.newstext}}</td>
+        <td class="align-middle text-center text-sm text-dark">{{n.newsdate}}</td>
+        {%endfor%}
+    </tr>
+</table>
+{%endblock%}

@@ -1,0 +1,102 @@
+{%extends 'adminparent.html'%}
+
+
+{%block main%}
+<script>
+    function validate(){
+       var program=document.getElementById('program');
+        var branch=document.getElementById('branch');
+        var year=document.getElementById('year');
+        var  subject=document.getElementById('subject');
+        var filename=document.getElementById('filename');
+        /*file=document.getElementById('file')*/
+        if(program.value=="" || program.value==null)
+        {
+            alert("select progrram plese");
+            program.focus();
+
+        }
+        else if(branch.value=="" || branch.value==null)
+        {
+            alert("select branch plese");
+            branch.focus();
+        }
+        else if(year.value=="" || year.value==null)
+        {
+            alert("select year plese");
+            year.focus();
+        }
+        else if(subject.value=="" || subject.value==null)
+        {
+            alert("enter subject details plese");
+            subject.focus();
+        }
+        else if(filename.value=="" || filename.value==null)
+        {
+            alert("enter file name plese");
+            filename.focus();
+        }
+        /*else if(file.value==null)
+        {
+            alert("plese upload file");
+            file.focus();
+
+        }*/
+        else{
+            document.getElementById("upsd").submit();
+        }
+
+
+    }
+</script>
+<h1 style="text-align: center;">Upload Study Materais</h1>
+<form action="{% url 'uploadstudy'%}" method="post" enctype="multipart/form-data" id="upsd" onsubmit="event.preventDefault(); validate();">
+    {%csrf_token%}
+    <table class="table align-items-center mb-0">
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+        <td class="align-middle text-center text-sm">Enter Program</td>
+        <td class="align-middle text-center text-sm"><select class="form-control" name="program" id="program">
+            <option class="form-control"   selected value="">--Select--</option>
+            {%for p in program%}
+            <option value="{{p.program}}">{{p.program}}</option>
+            {%endfor%}
+        </select></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Enter Branch</td>
+
+            <td class="align-middle text-center text-sm"><select class="form-control" name="branch" id="branch">
+                <option  class="form-control" selected value="">--selected--</option>
+                {%for b in branch%}
+                <option value="{{b.branch}}">{{b.branch}}</option>
+                {%endfor%}
+            </select></td>
+            <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                <td class="align-middle text-center text-sm">Year</td>
+                <td class="align-middle text-center text-sm"><select class="form-control" name="year" id="year">
+                    <option selected value="">--Select--</option>
+                    {% for y in year%}
+                    <option value="{{y.year}}">{{y.year}}</option>
+                    {%endfor%}
+                </select></td>
+            </tr>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Enter Subject</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="text" name="subject" id="subject"></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Enter File Name</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="text" name="filename" id="filename"></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm">Select File</td>
+            <td class="align-middle text-center text-sm"><input class="form-control" type="file" name="myfile" ></td>
+        </tr>
+        <tr class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+            <td class="align-middle text-center text-sm"></td>
+            <td class="align-middle text-center text-sm"><button class="btn bg-gradient-dark w-100 my-4 mb-2" type="submit">upload</button></td>
+        </tr>
+    </table>
+</form>
+{%endblock%}
