@@ -7,6 +7,17 @@
 
     <h1 style="text-align: center;"> {{stu.name}}'s Profile</h1>
 <table class="table align-items-center mb-0" >
+    <tr>
+        <td>
+            <div class="image-container">
+                <img src="{{stu.pic}}" alt="{{stu.username}} Image">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="align-middle text-center text-sm">Enrollment Number</td>
+        <td class="align-middle text-center text-sm">{{stu.enno}}</td>
+    </tr>
         <tr>
             <td class="align-middle text-center text-sm">username :</td>
             <td class="align-middle text-center text-sm">{{stu.username}}</td>

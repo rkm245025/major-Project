@@ -81,6 +81,7 @@ def aboutus(request):
 def saveform(request):
     message = ""
     if request.method == "POST":
+        enno=request.POST["enno"]
         username = request.POST["username"]
         name = request.POST["name"]
         dob = request.POST["dob"]
@@ -91,15 +92,18 @@ def saveform(request):
         address = request.POST["address"]
         aadhar = request.POST["aadhar"]
         email = request.POST["email"]
+
         regdate = date.today()
+        pic=request.FILES["pic"]
         password = request.POST["password"]
         usertype = "student"
         
         
         reg = Registration(
-            username=username, name=name, dob=dob, gender=gender,
+             
+            enno=enno,username=username, name=name, dob=dob, gender=gender,
             fname=fname, branch=branch, year=year, address=address,
-            aadhar=aadhar, email=email, regdate=regdate
+            aadhar=aadhar, email=email, regdate=regdate,pic=pic
         )
         
         log = Login(
@@ -112,7 +116,7 @@ def saveform(request):
         year=Year.objects.all()
         branch=Branch.objects.all()
         subject="Registration"
-        msg=f'hi {username} you Registerd Succesfully and id is {username}  and Password is {password}'
+        msg=f'hi {name} you Registerd Succesfully and id is {username}  and Password is {password}'
         email_from=settings.EMAIL_HOST_USER
         recipient_list=[email,]
         send_mail(subject=subject,message=msg,from_email=email_from,recipient_list=recipient_list)

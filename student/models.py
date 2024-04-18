@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Registration(models.Model):
+    enno=models.CharField(max_length=30)
     username=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=500)
     dob=models.CharField(max_length=50)
@@ -13,6 +14,7 @@ class Registration(models.Model):
     email=models.EmailField(max_length=64)
     regdate=models.CharField(max_length=30)
     aadhar=models.CharField(max_length=12,default=0)
+    pic=models.ImageField(max_length=100,null=True,upload_to="profile_images/")
     def __str__(self) -> str:
         return f"{self.name} Branch-{self.branch} Year-{self.year}"
 

@@ -1,6 +1,23 @@
 {%extends 'student/layout.html'%}
 {%block body%}
 <script>
+
+
+
+
+
+        function checkFileSize(input) {
+            if (input.files && input.files[0]) {
+                const fileSize = input.files[0].size; // Size in bytes
+                const maxSizeInBytes = 100 * 1024; // 100 KB
+                if (fileSize > maxSizeInBytes) {
+                    alert("File size exceeds 100 KB limit.");
+                    input.value = ''; // Clear the file input
+                }
+            }
+        }
+    
+
     function validate(){
         var username=document.getElementById('username');
         var name=document.getElementById('name');
@@ -136,12 +153,14 @@
 {% endif %}
 
 <h1 class="text-light" style="text-align: center;">Register Here</h1>
-<form class="form-group" method="post" id="frmreg" onsubmit="event.preventDefault(); validate();" action="{%url  'saveform'%}">
+<form class="form-group" method="post" id="frmreg" onsubmit="event.preventDefault(); validate();" action="{%url  'saveform'%}" enctype="multipart/form-data">
     {%csrf_token%}
-    <table class="table" style="width: 60%; margin: auto;"><tr>
-        <td class='text-light'>User Name (use mobile number)</td>
-    <td><input class="form-control" type="text" name="username" id="username"></td>
-</tr>
+    <table class="table" style="width: 60%; margin: auto;">
+        <tr>
+            <td class='text-light'>Enrollment  Number</td>
+        <td><input class="form-control" type="text" name="enno" id="enno"></td>
+    </tr>
+       
 <tr>
     <td class='text-light'>Name</td>
     <td><input class="form-control" type="text" name="name" id="name"></td>
@@ -163,6 +182,10 @@
     <td><input class="form-control" type="text" name="fname" id="fname"></td>
 </tr>
 <tr>
+    <tr>
+        <td class='text-light'>Mobile Number</td>
+    <td><input class="form-control" type="text" name="username" id="username"></td>
+</tr>
     <td class='text-light'>select branch</td>
     <td><select class="form-control" name="branch" id="branch">
         <option  selected="--select--">--select--</option>
@@ -190,7 +213,7 @@
     <td><input class="form-control" type="email" name="email" id="email"></td>
 </tr>
 <tr>
-    <td class='text-light'>Aadhar Number</td>
+    <td>Aadhar Number</td>
     <td><input class="form-control" type="number" name="aadhar" id="aadhar"></td>
     
 </tr>
@@ -201,6 +224,12 @@
 <tr>
     <td>confirm password</td>
     <td><input class="form-control" type="password" name="cpassword" id="cpassword"></td>
+</tr>
+
+
+<tr>
+    <td>Upload profile picture</td>
+    <td><input class="form-control" type="file" name="pic" id="pic" accept=".jpg, .jpeg" onchange="checkFileSize(this)"></td>
 </tr>
 <tr>
     <td><input class="btn btn-danger" type="reset" name="" id="rest"></td>
